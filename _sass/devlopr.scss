@@ -496,7 +496,9 @@ header {
 /* jumbotron */
 .jumbotron {
     background-color: var(--main-background-color) !important;
-    background-image: url('https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    // background-image: url('https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    // background-image: url('https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-image: url('https://images.pexels.com/photos/256502/pexels-photo-256502.jpeg?cs=srgb&dl=pexels-pixabay-256502.jpg&fm=jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -521,14 +523,14 @@ header {
 }
 
 .jumbotron-heading{
-    color: #111;
+    color: #fff;
     font-size: 35px;
 }
 
 .lead {
     font-size: 1.30rem !important;
     font-weight: 600;
-    color: #111 !important;
+    color: #8bffe8 !important;
 }
 
 .fa {
