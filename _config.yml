@@ -1,4 +1,4 @@
-title: Hack4r
+title: hack4r </>
 subtitle: Learn Web Development, Ethical Hacking
 description: >- # this means to ignore newlines until "baseurl:"
   Hack4r is a platform built for Web Developers and Security Enthusiasts.Learn Web Development, Ethical Hacking from various Tutorials.
@@ -27,7 +27,7 @@ urls:
 # Edit Author details (For multi authors check _data/authors.yml)
 
 author_logo: profile.png
-author: Hack4r
+author: hack4r
 author_bio: A Platform built for Web Developers and Security Enthusiasts
 author_email: "info@hack4r.com"
 author_location: India
@@ -73,7 +73,7 @@ typewrite-text: Learn Programming, Web Development and Ethical Hacking
 
 # social links
 twitter_username: johndoe
-github_username:  sujaykundu777
+github_username:  hack4r
 facebook_username: johndoe
 linkedin_username: johndoe
 behance_username: johndoe
