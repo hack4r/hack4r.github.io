@@ -5,7 +5,7 @@ summary: "Learn how to build a Blog App using Nodejs"
 author: xplor4r
 date: '2021-01-16 14:35:23 +0530'
 category: ["windows","wordpress","docker"]
-thumbnail: /assets/img/posts/code.jpg
+thumbnail: /assets/img/posts/setup-wordpress-with-docker-mariadb-phpmysql-windows-10.png
 keywords: windows, express, wordpress development, wordpress using docker
 permalink: /blog/setup-worpress-on-windows-docker/
 usemathjax: false
