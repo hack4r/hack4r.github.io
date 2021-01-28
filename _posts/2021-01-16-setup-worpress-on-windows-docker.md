@@ -4,7 +4,7 @@ title:  "Setup wordpress for local development using Windows and Docker"
 summary: "Learn how to build a Blog App using Nodejs"
 author: xplor4r
 date: '2021-01-16 14:35:23 +0530'
-category: ["windows","wordpress","docker"]
+category: ["windows","wordpress","docker","php","mysql","mariadb"]
 thumbnail: /assets/img/posts/setup-wordpress-with-docker-mariadb-phpmysql-windows-10.png
 keywords: windows, express, wordpress development, wordpress using docker
 permalink: /blog/setup-worpress-on-windows-docker/
@@ -26,22 +26,26 @@ In this tutorial, I am going to show you how to setup wordpress local developmen
 
 Download Mariadb Docker Image :
 
-`$ docker pull mariadb:latest`
+```s
+$ docker pull mariadb:latest
+```
 
 Start a mariadb server instance
 
 Starting a MariaDB instance is simple:
 
-`$ docker run --name mariadb-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=wordpress -v /my/own/datadir:/var/lib/mysql  -p 3306:3306 -d mariadb:tag`
+```s
+$ docker run --name mariadb-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=wordpress -v /my/own/datadir:/var/lib/mysql  -p 3306:3306 -d mariadb:tag
+```
 
 Here,
 
---name is mariadb-container // name of the container we want to give
--e // environment variables
--v // location of host to store data
--p // port
--d – Tells Docker to run the container in daemon.
-mariadb:latest – Finally defines what to install and which version.
+**--name** is mariadb-container // name of the container we want to give
+**-e** // environment variables
+**-v** // location of host to store data
+**-p** // port
+**-d** – Tells Docker to run the container in daemon.
+**mariadb:latest** – Finally defines what to install and which version.
 
 Environment variables :
 
@@ -59,73 +63,96 @@ These variables are optional, used in conjunction to create a new user and to se
 
 Do note that there is no need to use this mechanism to create the root superuser, that user gets created by default with the password specified by the MYSQL_ROOT_PASSWORD variable.
 
-
+```
 -v /my/own/datadir:/var/lib/mysql
+```
 
 Create a data directory on the host system (outside the container) and mount this to a directory visible from inside the container. This places the database files in a known location on the host system, and makes it easy for tools and applications on the host system to access the files. The downside is that the user needs to make sure that the directory exists, and that e.g. directory permissions and other security mechanisms on the host system are set up correctly.
 
-In this case, we are saying that use the /my/own/datadir to save the database files.
+In this case, we are saying that use the **/my/own/datadir** to save the database files.
 
-
+```
 -p 3306:3306
+```
 
 the parameter “-p (localPort: containerPort)” is important in this process. You can choose a specific local port but not the container port, because most software such as MySQL, MariaDB set default ports (3306) in environment settings. If you set the container other than the default port (3306), you can’t use MySQL. (You need to change the config in my.cnf file in a Docker container if you want to use another port.)
 
 
 For our requirements let's run the following command to run mariadb:
 
-`$ docker run -e MYSQL_ROOT_PASSWORD=<your_password> -e MYSQL_DATABASE=wordpress --name wordpressdb  -d mariadb:latest`
-
-
+```s
+$ docker run -e MYSQL_ROOT_PASSWORD=<your_password> -e MYSQL_DATABASE=wordpress --name wordpressdb  -d mariadb:latest
 ```
+Now if we check the running containers:
+
+```s
 $ docker ps
 CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS         PORTS                    NAMES
 c4f1801fab01   mariadb:latest        "docker-entrypoint.s…"   10 seconds ago   Up 8 seconds   3306/tcp                 wordpressdb
 ```
+Our container for mariadb is running successfully at port **3306**.
 
-
-## Phpmyadmin
+## Installing Phpmyadmin
 
 We can use phpmyadmin as our database management tool :
 
-`docker run --name [container_name]-d --link [mariadb_container_name]:db -p 8080:80 phpmyadmin/phpmyadmin`
+```s
+docker run --name [container_name]-d --link [mariadb_container_name]:db -p 8080:80 phpmyadmin/phpmyadmin
+```
 
-In our case, to link mariadb we will use wordpressdb
+In our case, to link **mariadb** we will use wordpressdb container that is running already.
 
-`$ docker run --name phpMyAdmin -d --link wordpressdb:db -p 8080:80 phpmyadmin/phpmyadmin`
+```s
+$ docker run --name phpMyAdmin -d --link wordpressdb:db -p 8080:80 phpmyadmin/phpmyadmin
+```
 
+This should start our phpmyadmin container at port 8080. Visit http://localhost:8080 to view admin panel.
 
-This will start phpmyadmin at http://localhost:8080
+You need to use this credentials to login to phpmyadmin:
 
-use this credentials to login to phpmyadmin:
-
+```
 username : root
 password: my-secret-pw
+```
 
 Now, you can use phpMyAdmin that is connected with MariaDB.
 
-### Wordpress
+### Installing Wordpress
 
-`$ docker pull wordpress `
-
+```s
+$ docker pull wordpress
+```
 
 Now we need to connect wordpress container withour mariadb (database) container
 
+```s
+$ docker run -e WORDPRESS_DB_PASSWORD=your_password --name wordpress --link wordpressdb:mysql -p 80:80  -v "$PWD/html":/var/www/html -d wordpress
+```
 
-`$ docker run -e WORDPRESS_DB_PASSWORD=tomcruise22 --name wordpress --link wordpressdb:mysql -p 80:80  -v "$PWD/html":/var/www/html -d wordpress`
+You can also store data by passing
 
-You can also store data by passing -v "$PWD/html":/var/www/html
+```
+-v "$PWD/html":/var/www/html
+```
 
-Now we can run `http://localhost:80`
+Now, it should start our wordpress container that is using mariadb as database,  we can run our wordpress site `http://localhost:80`
 
 At First, the setup will start for configuring wordpress.
 
+### Fixing Errors
+
 If you get an error linking your server’s public IP address to the WordPress container’s internal address, remove the failed container using the following command:
 
-`docker rm wordpress`
+```s
+docker rm wordpress
+```
 
 Restart Docker and the database container, also make sure no other service is already bound to the port 80.
 
-`docker start wordpressdb`
+```s
+docker start wordpressdb
+```
 
-Then try creating the WordPress container again.
+Then try creating the WordPress container again. It should work fine if everything goes well !
+
+
