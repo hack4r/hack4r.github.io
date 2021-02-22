@@ -1,0 +1,394 @@
+<!DOCTYPE html> <html lang=" en "><head> <meta charset="utf-8" /> <title> Utilizing the power of Docker while building MERN Apps using mern-docker -hack4r </> </title> <meta http-equip="X-UA-Compatible" content="IE=edge" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="description" content="Learn how to build a Full Stack App using MERN Docker- Utilizing the power of Docker while building MERN Apps using mern-docker"> <meta name="keywords" content="Utilizing the power of Docker while building MERN Apps using mern-docker, hack4r </>, docker, react, node, javascript, mongodb,nodejs, express, create server, node blog"/> <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" /> <meta content="" property="fb:app_id" /> <meta content="hack4r </>" property="og:site_name" /> <meta content="Utilizing the power of Docker while building MERN Apps using mern-docker" property="og:title" /> <meta content="article" property="og:type" /> <meta content="Learn how to build a Full Stack App using MERN Docker" property="og:description" /> <meta content="/blog/using-mern-docker-for-react-projects/" property="og:url" /> <meta content="2021-01-05T09:05:23+00:00" property="article:published_time" /> <meta content="/about/" property="article:author" /> <meta content="/assets/img/posts/code.jpg" property="og:image" /> <meta content="docker" property="article:section" /> <!-- Twitter Cards --> <meta name="twitter:card" content="summary" /> <meta name="twitter:site" content="@" /> <meta name="twitter:creator" content="@" /> <meta name="twitter:title" content="Utilizing the power of Docker while building MERN Apps using mern-docker" /> <meta name="twitter:url" content="/blog/using-mern-docker-for-react-projects/" /> <meta name="twitter:description" content="Learn how to build a Full Stack App using MERN Docker" /> <link rel="stylesheet" href="/assets/css/main.css" /> <!-- <link rel="stylesheet" href="/assets/css/custom-style.css" /> --> <link rel="stylesheet" href="/assets/bower_components/lightgallery/dist/css/lightgallery.min.css" /> <link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" /> <link rel="stylesheet" href="/assets/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" /> <link rel="stylesheet" href="/assets/bower_components/icono/dist/icono.min.css" /> <!-- Fonts--> <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet" /> <!-- Favicon --> <link rel="icon" href="/assets/img/favicon.ico" type="image/gif" sizes="16x16" /> <script> var base_url = '' ; </script> <!-- Jquery --> <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous" ></script> <!-- <script src="/assets/bower_components/jquery/dist/jquery.min.js"></script> --> <script src="/assets/bower_components/jquery.easing/jquery.easing.min.js"></script> <script src="/assets/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <script src="/assets/bower_components/jquery-mousewheel/jquery.mousewheel.min.js"></script> <script src="/assets/bower_components/ghosthunter/dist/jquery.ghostHunter.min.js"></script> <script src="/assets/bower_components/lightgallery/dist/js/lightgallery-all.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script> <script src="/assets/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script> <script src="/assets/bower_components/nanobar/nanobar.min.js"></script> <script src="/assets/bower_components/typewrite/dist/typewrite.min.js"></script> <script src="/assets/js/search.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script> <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> <!-- for Mathjax support --> <!-- Github Button --> <script async defer src="https://buttons.github.io/buttons.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" ></script> <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--> <!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]--> <!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]--> <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--> </head> <body> <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="topNav"> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" > <span class="icono-hamburger" id="navbar-hamburger"> </span> </button> <a class="navbar-brand" href="https://hack4r.com">hack4r </></a> <div class="collapse navbar-collapse" id="navbarNav"> <ul class="navbar-nav"> <li class="nav-item"> <a class="nav-link" href="/" >Home</a > </li> <li class="nav-item"> <a class="nav-link" href="/blog" >Blog</a > </li> </ul> </div> <ul class="nav justify-content-end"> <li class="nav-item"> <a class="nav-link toggle-search-button" href="#search"> <i class="fa fa-search search-icon" aria-hidden="true"></i> </a> </li> <!-- <li class="nav-item"> <input class="nav-link switch" id="theme-toggle" onclick="modeSwitcher() " type="checkbox" name="checkbox" /> </li> --> </ul> </nav> <!-- Search Form --> <div class="search-form-container"> <form class="search-form"> <fieldset class="search-form__fieldset"> <div class="row"> <div class="col-lg-8 offset-md-2"> <input class="search-form__field" placeholder="Type to Search..." autofocus> <input class="search-form__submit" type="submit" value="search"> </div> </div> </fieldset> </form> <div class="row"> <div class="col-lg-8 offset-md-2 search-results"> <div class="card search-results"></div> </div> </div> <div class="close-search-button search-form-container__close"> <i class="fa fa-times icon"></i> </div> </div><div class="col-lg-12"> <div class="row" id="blog-post-container"> <div class="col-lg-8 offset-md-2"><article class="card" itemscope itemtype="http://schema.org/BlogPosting"> <div class="card-header"> <h1 class="post-title" itemprop="name headline">Utilizing the power of Docker while building MERN Apps using mern-docker</h1> <h4 class="post-meta">Learn how to build a Full Stack App using MERN Docker</h4> <p class="post-summary"> Posted by : <span itemprop="author" itemscope itemtype="http://schema.org/Person"> <span itemprop="name"><a href="/blog/authors/xplor4r">xplor4r</a></span> </span > at <time datetime="2021-01-05 09:05:23 +0000" itemprop="datePublished" >Jan 5, 2021</time > </p> <span class="disqus-comment-count" data-disqus-identifier="/blog/using-mern-docker-for-react-projects/" ></span> <div class="post-categories"> Category : <a href="/blog/categories/docker" >docker</a > &nbsp; <a href="/blog/categories/react" >react</a > &nbsp; <a href="/blog/categories/node" >node</a > &nbsp; <a href="/blog/categories/javascript" >javascript</a > &nbsp; <a href="/blog/categories/mongodb" >mongodb</a > </div> </div> <div class="card-body" itemprop="articleBody"> <img class="card-img-top" src="/assets/img/posts/code.jpg" alt="" /> <br /> <br /> <p>This article was first published on Dev.to <a href="https://dev.to/sujaykundu777/utilizing-the-power-of-docker-while-building-mern-apps-using-mern-docker-4olb?signin=true">Read here</a></p> <p>In this article we will learn to build a MERN (Mongodb, Express, React, Nodejs) app using Docker and Docker Compose for both development and production build.</p> <p>The Source Code of the project is open source and any contributions are most welcome - [mern-docker] (https://github.com/sujaykundu777/mern-docker.git). You can just clone or fork the repo to get started in seconds ! :rocket:</p> <h3 id="1-creating-our-app-folder-structure">1. Creating our App (Folder Structure)</h3> <p>Let’s create a new directory for our App.</p> <p><code class="language-plaintext highlighter-rouge">mkdir myapp</code></p> <p>We will be separating our server with client, Let’s create our server folder:</p> <p><code class="language-plaintext highlighter-rouge">cd myapp</code> <code class="language-plaintext highlighter-rouge">mkdir server</code></p> <p>Now lets switch to building our Server first :</p> <p><code class="language-plaintext highlighter-rouge">cd server</code></p> <h3 id="2-building-express-server">2. Building Express Server</h3> <p>Let’s now create our Node App inside the server directory. I am using VS Code as editor</p> <ol> <li>Let’s initialize our app using:</li> </ol> <p><code class="language-plaintext highlighter-rouge">npm init</code></p> <p>It will ask some questions about you app, just hit enter to save the defaults, to create a package.json file.</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--iiQTZKLZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker1.PNG" alt="" /></p> <blockquote> <p>Installing Dependencies</p> </blockquote> <p>Since we will be using express and mongodb, lets install the required dependencies :</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--1J0kFT4k--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker2.PNG" alt="" /></p> <p><code class="language-plaintext highlighter-rouge">npm i -S express</code></p> <p>and our development dependencies :</p> <p><code class="language-plaintext highlighter-rouge">npm i -D nodemon</code></p> <p>Since we will be using Nodemon to watch our changes, lets add a command to run our server using nodemon in our package.json</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo </span><span class="se">\"</span><span class="s2">Error: no test specified</span><span class="se">\"</span><span class="s2"> &amp;&amp; exit 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node server.js"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodemon server.js"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <blockquote> <p>Creating our server</p> </blockquote> <p>Lets now create our Express server</p> <p>Create a new file server.js :</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// server.js</span>
+<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">PORT</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello World ! </span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Server Listening on </span><span class="p">${</span><span class="nx">PORT</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div> <p>Cool ! We created a server, which will be listening to PORT 8080. Let’s run it :</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--txvlwg3U--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker3.PNG" alt="" /></p> <p><code class="language-plaintext highlighter-rouge">npm run dev</code> // runs the app in nodemon (watch) mode for any changes to reflect</p> <p>It should run the app :</p> <p><code class="language-plaintext highlighter-rouge">Server Listening on 8080</code></p> <p>So now, if we visit http://localhost:8080 in our browser, it should show</p> <p><code class="language-plaintext highlighter-rouge">Hello World !</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--eFtdH2z1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker4.PNG" alt="" /></p> <blockquote> <p>Connecting to Mongodb</p> </blockquote> <p>Cool ! Let’s now create our mongodb database connection :</p> <p>We need to install mongoose a ODM for mongodb and dotenv to use environment variables,</p> <p><code class="language-plaintext highlighter-rouge">npm install -S mongoose dotenv</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--D-1dSf4U--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker5.PNG" alt="" /></p> <p>Create a new folder “src” where we will host our rest of our files, Inside it create a database.js</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="c1">// mongoose options</span>
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">useNewUrlParser</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">useFindAndModify</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">useCreateIndex</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">useUnifiedTopology</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">autoIndex</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">poolSize</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="na">bufferMaxEntries</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">};</span>
+
+<span class="c1">// mongodb environment variables</span>
+<span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">MONGO_HOSTNAME</span><span class="p">,</span>
+    <span class="nx">MONGO_DB</span><span class="p">,</span>
+    <span class="nx">MONGO_PORT</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">dbConnectionURL</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">LOCALURL</span><span class="dl">'</span><span class="p">:</span> <span class="s2">`mongodb://</span><span class="p">${</span><span class="nx">MONGO_HOSTNAME</span><span class="p">}</span><span class="s2">:</span><span class="p">${</span><span class="nx">MONGO_PORT</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">MONGO_DB</span><span class="p">}</span><span class="s2">`</span>
+<span class="p">};</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">dbConnectionURL</span><span class="p">.</span><span class="nx">LOCALURL</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Mongodb Connection Error:</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">dbConnectionURL</span><span class="p">.</span><span class="nx">LOCALURL</span><span class="p">));</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="c1">// we're connected !</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Mongodb Connection Successful</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div> <p>We need to create a .env file to store our database varibles (in the server directory)</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MONGO_HOSTNAME=localhost
+MONGO_DB=myapp_db
+MONGO_PORT=27017
+</code></pre></div></div> <p>Also to use the connection in our express app , call the database connection inside server.js</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Our DB Configuration</span>
+<span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./src/database</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div> <p>Now if we run our app, (remember - your local mongodb should be available) :</p> <p><code class="language-plaintext highlighter-rouge">npm run dev</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--8xIMyKgq--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker6.PNG" alt="" /></p> <p>Your App should be running at PORT 8080 with Mongodb connection at PORT 27017</p> <blockquote> <p>Creating our Post Model</p> </blockquote> <p>Before we create our first api endpoint, we need a model for our Blog Posts. Simply say what a blog post will have - title, description, author etc. Let’s describe that in our Post Model</p> <p>Create a new folder models inside src folder and create a new file post.model.js</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Post.model.js</span>
+<span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">postSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+   <span class="na">title</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+       <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+   <span class="p">},</span>
+   <span class="na">body</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">type</span><span class="p">:</span> <span class="nb">String</span>
+   <span class="p">},</span>
+   <span class="na">author</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">type</span><span class="p">:</span> <span class="nb">String</span>
+   <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">Post</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="dl">"</span><span class="s2">Post</span><span class="dl">"</span><span class="p">,</span> <span class="nx">postSchema</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Post</span><span class="p">;</span>
+</code></pre></div></div> <p>Great ! We defined a model for our Post document. Post model has title, body and author all of them are string. Enough for now :)</p> <blockquote> <p>Creating our Blog API Routes</p> </blockquote> <p>Let’s create our routes : Create a new folder routes inside src folder. Inside it create a file post.router.js</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">postRouter</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">Post</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../models/post.model</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// post model</span>
+
+<span class="cm">/* Get all Posts */</span>
+<span class="nx">postRouter</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">Post</span><span class="p">.</span><span class="nx">find</span><span class="p">({}</span> <span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+                <span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">:</span> <span class="nx">result</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="cm">/* Get Single Post */</span>
+<span class="nx">postRouter</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/:post_id</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">Post</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">post_id</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+             <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+               <span class="na">success</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+               <span class="na">error</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+             <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+            <span class="na">success</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="nx">result</span>
+        <span class="p">});</span>
+     <span class="p">});</span>
+<span class="p">});</span>
+
+
+<span class="cm">/* Add Single Post */</span>
+<span class="nx">postRouter</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">newPost</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
+    <span class="na">author</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">author</span>
+  <span class="p">};</span>
+   <span class="nx">Post</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">newPost</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+          <span class="na">success</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+          <span class="na">error</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">201</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+        <span class="na">success</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="nx">result</span><span class="p">,</span>
+        <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Post created successfully</span><span class="dl">"</span>
+      <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="cm">/* Edit Single Post */</span>
+<span class="nx">postRouter</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/:post_id</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">fieldsToUpdate</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+  <span class="nx">Post</span><span class="p">.</span><span class="nx">findByIdAndUpdate</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">post_id</span><span class="p">,{</span> <span class="na">$set</span><span class="p">:</span> <span class="nx">fieldsToUpdate</span> <span class="p">},</span> <span class="p">{</span> <span class="na">new</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>  <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+          <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+             <span class="na">success</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="na">error</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+            <span class="p">});</span>
+      <span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+        <span class="na">success</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="nx">result</span><span class="p">,</span>
+        <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Post updated successfully</span><span class="dl">"</span>
+        <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="cm">/* Delete Single Post */</span>
+<span class="nx">postRouter</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">"</span><span class="s2">/:post_id</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">Post</span><span class="p">.</span><span class="nx">findByIdAndDelete</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">post_id</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+          <span class="na">success</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+          <span class="na">error</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+      <span class="na">success</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">data</span><span class="p">:</span> <span class="nx">result</span><span class="p">,</span>
+      <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Post deleted successfully</span><span class="dl">"</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">postRouter</span><span class="p">;</span>
+</code></pre></div></div> <p>Now let’s now use this route in our app. In server.js add the below code :</p> <p>we need to install body-parser module :</p> <p><code class="language-plaintext highlighter-rouge">npm install -S body-parser</code></p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Routes</span>
+<span class="kd">const</span> <span class="nx">postRouter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./src/routes/post.router</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+  <span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span>
+    <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">})</span>
+<span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/posts</span><span class="dl">'</span><span class="p">,</span> <span class="nx">postRouter</span><span class="p">);</span>
+</code></pre></div></div> <p>Great ! All set, let’s run our server and check if everything works fine :</p> <p><code class="language-plaintext highlighter-rouge">npm run dev</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--hkvLeyS---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker7.PNG" alt="" /></p> <p>Now lets open Postman app to test our API’s that we created :</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    GET -      /   	     - Get all posts
+    POST -     / 	     - Create a new Post
+    GET -      /:post_id - Get a Single Post using Post Id
+    PATCH -    /:post_id - Edit a Single Post using Post Id
+    DELETE -   /:post_id - Delete a single Post using Post Id
+</code></pre></div></div> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--ZiEcsBDu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker8.PNG" alt="" /></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--dDP_Nwtn--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker9.PNG" alt="" /></p> <p>Great ! All our API’s are working fine !</p> <blockquote> <p>Dockerize Express and Mongodb</p> </blockquote> <p>Add <strong>Dockerfile</strong> to the root folder :</p> <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">#  Dockerfile for Node Express Backend api (development)</span>
+
+<span class="k">FROM</span><span class="s"> node:10.16-alpine</span>
+
+<span class="c"># ARG NODE_ENV=development</span>
+
+<span class="c"># Create App Directory</span>
+<span class="k">RUN </span><span class="nb">mkdir</span> <span class="nt">-p</span> /usr/src/app
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app</span>
+
+<span class="c"># Install Dependencies</span>
+<span class="k">COPY</span><span class="s"> package*.json ./</span>
+
+<span class="k">RUN </span>npm ci
+
+<span class="c"># Copy app source code</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+
+<span class="c"># Exports</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+
+<span class="k">CMD</span><span class="s"> ["npm","start"]</span>
+</code></pre></div></div> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--C8sh77rl--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker10.PNG" alt="" /></p> <p>We can simply build our express app with this command</p> <p><code class="language-plaintext highlighter-rouge">docker build -t node-app .</code></p> <p>But.. this will only run our express app, but not together with MongoDb. That’s why we need a <code class="language-plaintext highlighter-rouge">docker-compose</code> file. 🐳</p> <p>Now create another file called docker-compose.yml and paste this:</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.7'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+    <span class="na">webapp-server</span><span class="pi">:</span>
+      <span class="na">build</span><span class="pi">:</span>
+        <span class="na">context</span><span class="pi">:</span> <span class="s">.</span>
+        <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">Dockerfile</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">myapp-server-img</span>
+      <span class="na">container_name</span><span class="pi">:</span> <span class="s">myapp-node-express</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">.:/usr/src/app</span>
+       <span class="pi">-</span> <span class="s">/usr/src/app/node_modules</span>
+      <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+      <span class="na">depends_on</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">mongo</span>
+      <span class="na">env_file</span><span class="pi">:</span> <span class="s">.env</span>
+      <span class="na">environment</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">MONGO_HOSTNAME=$MONGO_HOSTNAME</span>
+        <span class="pi">-</span> <span class="s">MONGO_PORT=$MONGO_PORT</span>
+        <span class="pi">-</span> <span class="s">MONGO_DB=$MONGO_DB</span>
+    <span class="na">mongo</span><span class="pi">:</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">mongo</span>
+      <span class="na">container_name</span><span class="pi">:</span> <span class="s">myapp-mongodb</span>
+      <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">27017:27017"</span>
+</code></pre></div></div> <p>Also we need to change our connection url from localhost to mongo !</p> <p>Edit your MONGO_HOSTNAME=mongo in .env file</p> <p>Let’s run our App using docker-compose :</p> <p>Build the images :</p> <p><code class="language-plaintext highlighter-rouge">docker-compose build</code></p> <p>Run the containers :</p> <p><code class="language-plaintext highlighter-rouge">docker-compose up</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--oI5HzBjT--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker11.PNG" alt="" /></p> <p>Great ! Everything Works :D</p> <h3 id="3-building-react-client">3. Building React Client</h3> <p>Let’s now build and setup our frontend for our App, Initialize a react-app using npx.</p> <p><code class="language-plaintext highlighter-rouge">npx create-react-app client</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--SgQ_BMzJ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker12.PNG" alt="" /></p> <p>This will create a react-app inside a folder named “client”. Let’s run the app :</p> <p><code class="language-plaintext highlighter-rouge">yarn start</code></p> <p>This will start a development server at port 3000. You can open browser at http://localhost:3000</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--PN5BCyiv--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker13.PNG" alt="" /></p> <p>Great ! we got our development server up, lets now dockerize our react app</p> <p>Let’s now create our <strong>Dockerfile</strong></p> <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c"># Dockerfile for client</span>
+
+<span class="c"># Stage 1: Build react client</span>
+<span class="k">FROM</span><span class="s"> node:10.16-alpine</span>
+
+<span class="c"># Working directory be app</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/app</span>
+
+<span class="k">COPY</span><span class="s"> package*.json ./</span>
+
+<span class="c"># Install dependencies</span>
+<span class="k">RUN </span>yarn <span class="nb">install</span>
+
+<span class="c"># copy local files to app folder</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+
+<span class="k">CMD</span><span class="s"> ["yarn","start"]</span>
+</code></pre></div></div> <p>Let’s start building our container using command :</p> <p><code class="language-plaintext highlighter-rouge">docker build -t myapp-react:v1 .</code></p> <p>To verify everything is fine, we run our newly built container using command:</p> <p><code class="language-plaintext highlighter-rouge">docker run -p 3000:3000 myapp-react:v1</code></p> <p>Lets now visit http://localhost:3000 . Great our client is</p> <p>Okay ! We got our independent containers both for client and server, but they are not currently interacting each other. Let’s solve this problem by using docker-compose</p> <h3 id="4-connecting-client-and-server-using-docker-compose">4. Connecting Client and Server using Docker Compose</h3> <p>To do this, we need to tell our server about our client !</p> <p>In our /server/server.js add this :</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// will redirect all the non-api routes to react frontend
+router.use(function(req, res) {
+	res.sendFile(path.join(__dirname, '../client','build','index.html'));
+});
+</code></pre></div></div> <p>And we need to tell our React Client to proxy the API requests at port 8080 (where our server is running):</p> <p>In our /client/package.json add this :</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> "proxy": "http://server:8080"
+</code></pre></div></div> <p>Cool, let’s create a new docker-compose.yml at the root of our project, which will interact with individual Dockerfile’s of the client and server and create a network between this containers:</p> <p>Add this code in docker-compose.dev.yml</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.7'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">server</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span>
+      <span class="na">context</span><span class="pi">:</span> <span class="s">./server</span>
+      <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">Dockerfile</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">myapp-server</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">myapp-node-server</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">/usr/src/app/node_modules/.bin/nodemon server.js</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./server/:/usr/src/app</span>
+      <span class="pi">-</span> <span class="s">/usr/src/app/node_modules</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mongo</span>
+    <span class="na">env_file</span><span class="pi">:</span> <span class="s">./server/.env</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">NODE_ENV=development</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">app-network</span>
+  <span class="na">mongo</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mongo</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">data-volume:/data/db</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">27017:27017"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">app-network</span>
+  <span class="na">client</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span>
+      <span class="na">context</span><span class="pi">:</span> <span class="s">./client</span>
+      <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">Dockerfile</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">myapp-client</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">myapp-react-client</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">yarn start</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./client/:/usr/app</span>
+      <span class="pi">-</span> <span class="s">/usr/app/node_modules</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">server</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">3000:3000"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">app-network</span>
+
+<span class="na">networks</span><span class="pi">:</span>
+    <span class="na">app-network</span><span class="pi">:</span>
+        <span class="na">driver</span><span class="pi">:</span> <span class="s">bridge</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+    <span class="na">data-volume</span><span class="pi">:</span>
+    <span class="na">node_modules</span><span class="pi">:</span>
+    <span class="na">web-root</span><span class="pi">:</span>
+      <span class="na">driver</span><span class="pi">:</span> <span class="s">local</span>
+</code></pre></div></div> <p>What this will do is, it will run all the services parallely, our express backend will run at port 8080, mongodb at 27017 , and react client at port 3000. Let’s test it by running the following command in our project root directory :</p> <p>Now to run docker-compose. We need to create a new file “docker-compose.yml” where we will copy the contents of the docker-compose.dev.yml . It’s a good practice to seperate dev and prod docker-compose.</p> <p>So copy all the content of docker-compose.dev.yml to docker-compose.yml and run :</p> <p><code class="language-plaintext highlighter-rouge">docker-compose up --build</code></p> <p>By this, the docker-compose.yml that we created inside will only be required/used, if you want to work only on the server independent of the client :D</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Pt82iGzW--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker14.PNG" alt="" /></p> <p>As you can see, if any changes you do either in server or client, will be reflected instantly (best for development)</p> <p>Awesome ! We created our Blog App :D , lets now check on how to create a production build for our App.</p> <h3 id="production-build">Production Build</h3> <p>For Production, we will be building our client and use it in our server to serve it. Let’s create a new Dockerfile.prd (for production) in the project’s root directory :</p> <p>In our server/server.js add the following to tell express that our react client will be served from the build path :</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">CLIENT_BUILD_PATH</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">"</span><span class="s2">../client/build</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// Static files</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="nx">CLIENT_BUILD_PATH</span><span class="p">));</span>
+
+<span class="c1">// Server React Client</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">CLIENT_BUILD_PATH</span> <span class="p">,</span> <span class="dl">"</span><span class="s2">index.html</span><span class="dl">"</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div></div> <p>Great ! Let’s now create a production Dockerfile, which will help in copying the build files from the react client and put it in the client folder of our server, which we will use to serve the app.</p> <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c"># Production Build</span>
+
+<span class="c"># Stage 1: Build react client</span>
+<span class="k">FROM</span><span class="s"> node:10.16-alpine as client</span>
+
+<span class="c"># Working directory be app</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/app/client/</span>
+
+<span class="k">COPY</span><span class="s"> client/package*.json ./</span>
+
+<span class="c"># Install dependencies</span>
+<span class="k">RUN </span>yarn <span class="nb">install</span>
+
+<span class="c"># copy local files to app folder</span>
+<span class="k">COPY</span><span class="s"> client/ ./</span>
+
+<span class="k">RUN </span>yarn build
+
+<span class="c"># Stage 2 : Build Server</span>
+
+<span class="k">FROM</span><span class="s"> node:10.16-alpine</span>
+
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app/</span>
+<span class="k">COPY</span><span class="s"> --from=client /usr/app/client/build/ ./client/build/</span>
+
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app/server/</span>
+<span class="k">COPY</span><span class="s"> server/package*.json ./</span>
+<span class="k">RUN </span>npm <span class="nb">install</span> <span class="nt">-qy</span>
+<span class="k">COPY</span><span class="s"> server/ ./</span>
+
+<span class="k">ENV</span><span class="s"> PORT 8000</span>
+
+<span class="k">EXPOSE</span><span class="s"> 8000</span>
+
+<span class="k">CMD</span><span class="s"> ["npm", "start"]</span>
+</code></pre></div></div> <p>This will do all the heavy work of building our server and client, using multi-stage builds.</p> <p>Let’s utilize this multi-stage Dockerfile to use it with Docker Compose to run our App (along with mongodb) :</p> <p>Add this code in <strong>docker-compose.prd.yml</strong> :</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.7'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">web</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span>
+      <span class="na">context</span><span class="pi">:</span> <span class="s">.</span>
+      <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">Dockerfile</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="c1"># env_file: ./server/.env # TODO - uncomment this to auto-load your .env file!</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">NODE_ENV</span><span class="pi">:</span> <span class="s">production</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mongo</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">app-network</span>
+  <span class="na">mongo</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mongo</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">data-volume:/data/db</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">27017:27017"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">app-network</span>
+
+<span class="na">networks</span><span class="pi">:</span>
+    <span class="na">app-network</span><span class="pi">:</span>
+        <span class="na">driver</span><span class="pi">:</span> <span class="s">bridge</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+    <span class="na">data-volume</span><span class="pi">:</span>
+    <span class="na">node_modules</span><span class="pi">:</span>
+    <span class="na">web-root</span><span class="pi">:</span>
+      <span class="na">driver</span><span class="pi">:</span> <span class="s">local</span>
+</code></pre></div></div> <p>Since, we already have a docker-compose.dev.yml and docker-compose.yml already in the root directory. To run production, we need to copy the docker-compose.prd.yml content and replace the docker-compose.yml content.</p> <blockquote> <p>docker-compose.yml should now have the same content as of docker-compose.prd.yml</p> </blockquote> <p>Let’s test our Production build by running (removing any orphan containers):</p> <p><code class="language-plaintext highlighter-rouge">docker-compose up --build --remove-orphans</code></p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--XaABDaCU--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker15.PNG" alt="" /></p> <p>Lets now visit the url : http://localhost:8080</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--UWz4HEOn--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker16.PNG" alt="" /></p> <p>As you can see by the sign in browser navbar, this will be the production react build. Let’s now check whether our API’s and DB are working properly or not, Since express is serving react, the api’s should be working fine:</p> <p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--fVhC7OFb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://sujaykundu.com/assets/img/posts/docker17.PNG" alt="" /></p> <p>That’s it ! Our App’s Production Build is ready for Deployment :D</p> <p>The Source Code of the project is open source and any contributions are most welcome - [mern-docker] (https://github.com/sujaykundu777/mern-docker.git). You can just clone or fork the repo to get started in seconds ! :rocket:</p> <br /><!-- Load Facebook SDK for JavaScript --> <div id="fb-root"></div> <script> (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0"; fjs.parentNode.insertBefore(js, fjs); })(document, "script", "facebook-jssdk"); </script> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" ></script> <div class="share-page"> <p class="share-text">Share this on &rarr;</p> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false" style="margin-top:5px;" >Tweet</a > <a class="fb-share-button" data-href="/blog/using-mern-docker-for-react-projects/" data-size="large" data-layout="button" >Share</a> </div><!-- Author box --> <div class="card"> <div class="card-header"> About Sujay kundu </div> <div class="card-body"> <div class="row"> <div class="col-md-4"> <img class="author-profile-img" src="/assets/img/authors/xplor4r.png" alt="Sujay kundu" /> </div> <div class="col-md-6"> <p class="author_bio">Full Stack Web Developer, based in Bangalore, India</p> <p>Email : mail@sujaykundu.com</p> <p>Website : https://sujaykundu.com</p> <p class="profile-links"> <a class="social-link" href="https://github.com/sujaykundu777" target="_blank"><i class="fab fa-github fa-fw"></i></a> <a class="social-link" href="https://www.linkedin.com/in/sujaykundu" target="_blank"><i class="fab fa-linkedin fa-fw"></i></a> <a class="social-link" href="https://www.youtube.com/channel/UCSfLBFFfNU9r6ihfei6VeJw" target="_blank"><i class="fab fa-youtube fa-fw"></i></a> <a class="social-link" href="https://www.facebook.com/sujay.kundu2" target="_blank"><i class="fab fa-facebook fa-fw"></i></a> </p> </div> </div> </div> </div> </div><div class="comments"><!-- Hyvor Comments. For more info visit https://talk.hyvor.com --> <div id="hyvor-talk-view"></div> <script type="text/javascript"> var HYVOR_TALK_WEBSITE = '476'; var HYVOR_TALK_CONFIG = { url: '/blog/using-mern-docker-for-react-projects/', id: '/blog/using-mern-docker-for-react-projects', palette: { accent: "#EB8E3F", accentText: "#080808", footerHeader: "#171616", footerHeaderText: "#656363", box: "#3A3A38", boxText: "#E0E0E0", boxLightText: "#AAAAAA", backgroundText: "#E0E0E0" } }; </script> <script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script> </div><!-- Incomment incase you want to use Disqus <div id="disqus_thread"></div> --> </article> <script> var disqus_config = function () { this.page.url = "/blog/using-mern-docker-for-react-projects/"; /* Replace PAGE_URL with your page's canonical URL variable */ this.page.identifier = "/blog/using-mern-docker-for-react-projects"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */ }; (function () { /* DON'T EDIT BELOW THIS LINE */ var d = document, s = d.createElement('script'); s.src = 'https://.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })(); </script> <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a> </noscript></div> </div> <div class="row"> <div class="col-md-4"> <div class="card"> <div class="card-header">About hack4r</div> <div class="card-body"> <p class="author_bio">A Platform built for Web Developers and Security Enthusiasts</p><!-- Place this tag where you want the github button to render. --> <a class="github-button" href="https://github.com/sujaykundu777/devlopr-jekyll" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star sujaykundu777/devlopr-jekyll on GitHub">Star</a> </div> </div> </div> <div class="col-md-4"> <div class="card"> <div class="card-header">Categories</div> <div class="card-body text-dark"> <div id="#jekyll"></div> <li class="tag-head"> <a href="/blog/categories/jekyll">jekyll</a> </li> <a name="jekyll"></a> <div id="#windows"></div> <li class="tag-head"> <a href="/blog/categories/windows">windows</a> </li> <a name="windows"></a> <div id="#ruby"></div> <li class="tag-head"> <a href="/blog/categories/ruby">ruby</a> </li> <a name="ruby"></a> <div id="#git"></div> <li class="tag-head"> <a href="/blog/categories/git">git</a> </li> <a name="git"></a> <div id="#docker"></div> <li class="tag-head"> <a href="/blog/categories/docker">docker</a> </li> <a name="docker"></a> <div id="#aws"></div> <li class="tag-head"> <a href="/blog/categories/aws">aws</a> </li> <a name="aws"></a> <div id="#nginx"></div> <li class="tag-head"> <a href="/blog/categories/nginx">nginx</a> </li> <a name="nginx"></a> <div id="#nodejs"></div> <li class="tag-head"> <a href="/blog/categories/nodejs">nodejs</a> </li> <a name="nodejs"></a> <div id="#express"></div> <li class="tag-head"> <a href="/blog/categories/express">express</a> </li> <a name="express"></a> <div id="#javascript"></div> <li class="tag-head"> <a href="/blog/categories/javascript">javascript</a> </li> <a name="javascript"></a> <div id="#linux"></div> <li class="tag-head"> <a href="/blog/categories/linux">linux</a> </li> <a name="linux"></a> <div id="#react"></div> <li class="tag-head"> <a href="/blog/categories/react">react</a> </li> <a name="react"></a> <div id="#node"></div> <li class="tag-head"> <a href="/blog/categories/node">node</a> </li> <a name="node"></a> <div id="#mongodb"></div> <li class="tag-head"> <a href="/blog/categories/mongodb">mongodb</a> </li> <a name="mongodb"></a> <div id="#wordpress"></div> <li class="tag-head"> <a href="/blog/categories/wordpress">wordpress</a> </li> <a name="wordpress"></a> <div id="#php"></div> <li class="tag-head"> <a href="/blog/categories/php">php</a> </li> <a name="php"></a> <div id="#mysql"></div> <li class="tag-head"> <a href="/blog/categories/mysql">mysql</a> </li> <a name="mysql"></a> <div id="#mariadb"></div> <li class="tag-head"> <a href="/blog/categories/mariadb">mariadb</a> </li> <a name="mariadb"></a> <div id="#ssl"></div> <li class="tag-head"> <a href="/blog/categories/ssl">ssl</a> </li> <a name="ssl"></a> <div id="#domain"></div> <li class="tag-head"> <a href="/blog/categories/domain">domain</a> </li> <a name="domain"></a> <div id="#blog"></div> <li class="tag-head"> <a href="/blog/categories/blog">blog</a> </li> <a name="blog"></a> <div id="#typescript"></div> <li class="tag-head"> <a href="/blog/categories/typescript">typescript</a> </li> <a name="typescript"></a> <div id="#graphql"></div> <li class="tag-head"> <a href="/blog/categories/graphql">graphql</a> </li> <a name="graphql"></a> <div id="#graphcms"></div> <li class="tag-head"> <a href="/blog/categories/graphcms">graphcms</a> </li> <a name="graphcms"></a> <div id="#bootstrap"></div> <li class="tag-head"> <a href="/blog/categories/bootstrap">bootstrap</a> </li> <a name="bootstrap"></a> <div id="#netlify"></div> <li class="tag-head"> <a href="/blog/categories/netlify">netlify</a> </li> <a name="netlify"></a> </div> </div> </div> <div class="col-md-4"> <div class="card"> <div class="card-header">Useful Links</div> <div class="card-body text-dark"> <li> <a href="/">Home</a> </li> <li> <a href="/blog">Blog</a> </li> </div> </div> </div> </div> </div> <div class="col-lg-12" id="newsletter_footer"><!-- Mailchimp Newletters --> <form action="https://sujaykundu.us10.list-manage.com/subscribe/post?u=50bab1c85eae24ecfb0f68361&amp;id=3a2dd721d0"method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate> <div id="mc_embed_signup_scroll_footer"> <label for="mce-EMAIL_footer"> Signup for Weekly Email Newsletters :D</label> <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL_footer" placeholder="email address" required> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups--> <div style="position: absolute; left: -5000px;" aria-hidden="true"> <input type="text" name="b_50bab1c85eae24ecfb0f68361_3a2dd721d0" tabindex="-1" value=""> </div><br /> <div class="clear"> <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe_footer" class="btn btn-lg btn-success"> </div> </div> </div><footer> <p> Powered by<a href="https://github.com/sujaykundu777/devlopr-jekyll"> devlopr jekyll</a>. Subscribe via <a href=" /feed.xml ">RSS</a> </p> </footer> <script> var options = { classname: 'my-class', id: 'my-id' }; var nanobar = new Nanobar( options ); nanobar.go( 30 ); nanobar.go( 76 ); nanobar.go(100); </script> <div hidden id="snipcart" data-api-key="Y2I1NTAyNWYtMTNkMy00ODg0LWE4NDItNTZhYzUxNzJkZTI5NjM3MDI4NTUzNzYyMjQ4NzU0"></div> <script src="https://cdn.snipcart.com/themes/v3.0.0-beta.3/default/snipcart.js" defer></script> <!-- <script src="/assets/js/mode-switcher.js"></script> --> <script src="/assets/js/dark-mode.js"></script> <script> if (window.netlifyIdentity) { window.netlifyIdentity.on("init", user => { if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); } }); } </script> </body> </html>
