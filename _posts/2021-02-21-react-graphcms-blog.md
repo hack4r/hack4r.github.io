@@ -74,7 +74,18 @@ Now, our typescript setup is ready. We need to change all our files with .js ext
 
 We need to create a account in GraphCMS. Add create content model for our Blog.
 
-After we have created our model, We need to get our Graphql API Endpoint. This API endpoint will help us query our data from GRAPHCMS.
+
+![Creating a GRAPHCMS post schema](/assets/img/post/graphcms-blog/postSchema-graphql.PNG)
+
+After we have created our model, we need to create some content :
+
+![Creating Content for GRAPHCMS post model](/assets/img/post/graphcms-blog/postContent-graphcms.PNG)
+
+![Query our Post](/assets/img/post/graphcms-blog/postQuery-graphcms.PNG)
+
+![Graphcms Api for Quering](/assets/img/post/graphcms-blog/postApi-graphcms.PNG)
+
+We need to get our Graphql API Endpoint. This API endpoint will help us query our data from GRAPHCMS.
 It will look something like this url 'https://api-ap-northeast-1.graphcms.com/v2/ckl88sdscw296sxk01xs1gyvefbb/master'
 
 ### Setting up our Graphql Client in React :
