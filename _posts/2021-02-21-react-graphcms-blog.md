@@ -3,7 +3,7 @@ layout: post
 title:  "Build and Deploy a Blog using React, Typescript and GraphCMS"
 summary: "Learn how to build and deploy a Blog App using React, Typescript and GraphCMS"
 author: xplor4r
-date: '2021-02-07 14:35:23 +0530'
+date: '2021-02-21 14:35:23 +0530'
 category: ["react", "blog","typescript", "graphql", "graphcms", "bootstrap", "netlify"]
 thumbnail: /assets/img/posts/code.jpg
 keywords: react graphcms typescript, deploy blog using react graphql
