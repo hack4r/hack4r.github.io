@@ -5,7 +5,7 @@ summary: "Learn how to build and deploy a Blog App using React, Typescript and G
 author: xplor4r
 date: '2021-02-21 14:35:23 +0530'
 category: ["react", "blog","typescript", "graphql", "graphcms", "bootstrap", "netlify"]
-thumbnail: /assets/img/posts/code.jpg
+thumbnail: /assets/img/posts/blog-built-using-react-typescript-graphcms.png
 keywords: react graphcms typescript, deploy blog using react graphql
 permalink: /blog/build-a-blog-using-react-typescript-graphql-graphcms/
 usemathjax: false
